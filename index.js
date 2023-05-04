@@ -98,7 +98,7 @@ function bestOf(n){
     let msg = ""
 
     // Log bracket results
-    console.group( "Best of " + n )
+    console.group( "Game Over!" )
     // Log userScore
     console.log( "Your score: " + userScore )
     // Log computerScore
