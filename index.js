@@ -89,6 +89,9 @@ function bestOf(n){
         currentScore += " | You: " + userScore
         console.log(currentScore)
         // if isResultSecured(n) break the loop
+        if( isResultSecured(n) ){
+            break;
+        } 
         // Log rounds left
         let roundsLeft = n - i - 1
         console.log( roundsLeft + " rounds left" )
