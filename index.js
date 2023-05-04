@@ -54,6 +54,8 @@ function playRound( roundsLeft ){
 function playBestOf( num ) {
     // Create an int variable named userScore
     let userScore = 0;
+    // Create results msg
+    let msg = "";
 
     for (let i = num; i > 0; i--) {
         userScore += playRound(i - 1)
@@ -61,16 +63,20 @@ function playBestOf( num ) {
     // Display best of (n) bracket results
     console.log( "Your score: " + userScore)
     if ( userScore > (num / 2) ){
-        console.log(`You win best of ${num}!`)
+        msg = `You win best out of ${num}!`
     } else if ( userScore < (num / 2) ){
-        console.log(`You loose best of ${num} :(`)
+        msg = `You loose best out of ${num} :(`
     } else if ( userScore === (num / 2)){ // Handle case that num is not odd
         console.log(`It's a tie!`)
         if ( confirm("Tie braker?") ){
             playBestOf(1)
         }
     }
-    
+    console.log( msg )
+
+    if( confirm( msg + "\n" + "Play another set?") ){
+        playBestOf(5)
+    }
 }
 
 playBestOf(5)
