@@ -85,10 +85,14 @@ function bestOf(n){
     for ( let i = 0; i < n; i++ ) {
         // Play round with playRound("Round",i)
         playRound( "Round", i )
+        let currentScore = "Computer: " + computerScore;
+        currentScore += " | You: " + userScore
+        console.log(currentScore)
         // if isResultSecured(n) break the loop
         // Log rounds left
-        let roundsLeft = n - i
+        let roundsLeft = n - i - 1
         console.log( roundsLeft + " rounds left" )
+        
     }//
     // Declare msg variable with initial value ""
     let msg = ""
