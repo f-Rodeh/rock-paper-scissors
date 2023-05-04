@@ -63,17 +63,38 @@ function playBestOf( num ) {
     // Rounds played variable initially set to 0
     let roundsPlayed = 0;
     // Computer score initially set to 0
+    let computerScore = 0;
 
-    // Play if result has not been decided
+    let hasWon = false;
+    let hasLost = false;
+
     for (let i = num; i > 0; i--) {
-        userScore += playRound(i - 1)
+        
+        // If user has already won or lost, display exit loop
+        if (resultDecided){
+            break
+        }
+
+        // Play round and update user score
+            userScore += playRound(i - 1)
+
+        // Update roundsPlayed
+        roundsPlayed = num - i + 1
+        // Update computerScore
+        computerScore = roundsPlayed - userScore
+
+        hasWon = userScore > (num/2)
+        hasLost = computerScore > (num/2)
+
+        // Update resultDecided
+        resultDecided = hasWon || hasLost 
     }
     // Display best of (n) bracket results
     console.log( "Your score: " + userScore)
-    if ( userScore > (num / 2) ){
+    if ( hasWon ){
         msg = `You win best out of ${num}!`
-    } else if ( userScore < (num / 2) ){
-        msg = `You loose best out of ${num} :(`
+    } else if ( hasLost ){
+        msg = `You lose best out of ${num} :(`
     } else if ( userScore === (num / 2)){ // Handle case that num is not odd
         console.log(`It's a tie!`)
         if ( confirm("Tie braker?") ){
