@@ -4,7 +4,7 @@ let userScore = 0;
 let computerScore = 0;
 
 // Run the game
-playRound("Round", 0)
+bestOf(5)
 
 // Declare function playRound(type, i) to play a round. Return nothing
 function playRound(type, i) {
@@ -80,25 +80,42 @@ function insensitive(str){
 }
     
 // Declare function bestOf(n) to play a set of (n) rounds
+function bestOf(n){
     // In a loop of i = 0, while i < n, increment i
+    for ( let i = 0; i < n; i++ ) {
         // Play round with playRound("Round",i)
+        playRound( "Round", i )
         // if isResultSecured(n) break the loop
         // Log rounds left
-    //
+        let roundsLeft = n - i
+        console.log( roundsLeft + " rounds left" )
+    }//
     // Declare msg variable with initial value ""
+    let msg = ""
+
     // Log bracket results
-        // Log userScore
-        // Log computerScore
-        // if won
-            // msg is win result
-        // if lost
-            // msg is lost result
-        // if tie
-            // Log tie result
-            // run tieBraker()
-        // Log msg
-        // Show msg in screen and ask if user wants to play again
-//
+    console.group( "Best of " + n )
+    // Log userScore
+    console.log( "Your score: " + userScore )
+    // Log computerScore
+    console.log( "Computer score: " + computerScore )
+    
+    if( userScore > computerScore ) { // if won
+        // msg is win result
+        msg = "Congrats! you won best of " + n + " :D" 
+    } else if( userScore < computerScore ){ // if lost 
+        // msg is lost result
+        msg = "You lost best of " + n + " :("
+    } else if( userScore === computerScore ){// if tie
+        // Log tie result'
+        console.log(`Best of ${n} it's a tie! WHAT IS  HAPPENING?`)
+        // run tieBraker()
+    }
+    // Log msg
+    console.log( msg )
+    console.groupEnd()
+    // Show msg in screen and ask if user wants to play again
+}//
 
 // Declare function decideWinner(userChoice, computerChoice)
 // ...Returns "user" / "computer" / "tie"
