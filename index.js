@@ -57,6 +57,14 @@ function playBestOf( num ) {
     // Create results msg
     let msg = "";
 
+    // Create variable named resultDecided to know if result has been decided
+    // Initially set to false
+    let resultDecided = false;
+    // Rounds played variable initially set to 0
+    let roundsPlayed = 0;
+    // Computer score initially set to 0
+
+    // Play if result has not been decided
     for (let i = num; i > 0; i--) {
         userScore += playRound(i - 1)
     }
@@ -69,7 +77,11 @@ function playBestOf( num ) {
     } else if ( userScore === (num / 2)){ // Handle case that num is not odd
         console.log(`It's a tie!`)
         if ( confirm("Tie braker?") ){
-            playBestOf(1)
+            if(playRound()){
+                msg = "You won by tie braker"
+            } else {
+                msg = "You lost by tie braker"
+            }
         }
     }
     console.log( msg )
