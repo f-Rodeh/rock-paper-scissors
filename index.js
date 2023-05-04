@@ -27,6 +27,8 @@ function playRound(type, i) {
     // Display results
     // Group console with name `${type} ${i + 1}`  
     console.group( type + " " + (i + 1) )
+    console.log( "You chose: " + userChoice )
+    console.log( "Computer chose: " + computerChoice);
     // Test who the winner is
     switch( winner ){
         // if winner is "user"
