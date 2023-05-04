@@ -11,13 +11,13 @@ function playRound(type, i) {
 
     // Ask user to input  rock / paper / scissors
     // Store input in a String variable named userChoice
-    let userChoice = prompt(`Round ${i+1}! Choose between  rock / paper / scissors`)
+    let userChoice = prompt(`${type} ${i+1}! Choose between  rock / paper / scissors`)
     // Make userChoice insensitive with insensitive()
     userChoice = insensitive(userChoice)
 
     // Declare variable computerChoice with initial value calculated
     // ... by randomChoice() to define computer choice
-    let computerChoice = randomChoice()
+    let computerChoice = randomChoice() 
 
     // Declare variable msg with initial value "" to display results to user
     let msg = ""
@@ -95,12 +95,15 @@ function bestOf(n){
         // Log rounds left
         let roundsLeft = n - i - 1
         console.log( roundsLeft + " rounds left" )
-        
     }//
+    // Log bracket results
+    logBracketResults('Best Of', n)
+}//
+
+// Declare function logBracketResults that takes totalRounds to log it
+function logBracketResults( type = "", totalRounds ){
     // Declare msg variable with initial value ""
     let msg = ""
-
-    // Log bracket results
     console.group( "Game Over!" )
     // Log userScore
     console.log( "Your score: " + userScore )
@@ -109,20 +112,22 @@ function bestOf(n){
     
     if( userScore > computerScore ) { // if won
         // msg is win result
-        msg = "Congrats! you won best of " + n + " :D" 
+        msg = `Congrats! you won ${type} ${totalRounds} :D` 
     } else if( userScore < computerScore ){ // if lost 
         // msg is lost result
-        msg = "You lost best of " + n + " :("
+        msg = `You lost ${type} ${totalRounds} :(`
     } else if( userScore === computerScore ){// if tie
         // Log tie result'
-        console.log(`Best of ${n} it's a tie! WHAT IS  HAPPENING?`)
+        console.log(`${type} ${totalRounds} it's a tie! WHAT IS  HAPPENING?`)
+        console.groupEnd()
         // run tieBraker()
+        tieBraker()
+        return
     }
     // Log msg
     console.log( msg )
     console.groupEnd()
-    // Show msg in screen and ask if user wants to play again
-}//
+}
 
 // Declare function decideWinner(userChoice, computerChoice)
 // ...Returns "user" / "computer" / "tie"
@@ -151,8 +156,18 @@ function isResultSecured( totalRounds ){
 }//
 
 // Declare function tieBraker()
+function tieBraker(){
+    let n = 0;
     // while userScore is exactly computerScore
-        // count how many times has played tie braker with variable i
-        // playRound("Tie Braker", i)
-    //
-//
+    for (let i = 0; userScore === computerScore; i++) {
+        n = i + 1
+        // Ask the user to continue with tie brakers
+        if( confirm("IT'S A TIE !! do you want a Tie Braker?") ){
+            // count how many times has played tie braker with variable i
+            playRound("Tie Braker", i) 
+        } else {      
+            break
+        }
+    }
+    logBracketResults("Tie Braker", n)
+}//
