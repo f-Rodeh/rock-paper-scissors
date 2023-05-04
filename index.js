@@ -127,6 +127,17 @@ function logBracketResults( type = "", totalRounds ){
     // Log msg
     console.log( msg )
     console.groupEnd()
+    
+    // When finished, delete data and ask user to play again
+    let currentScore = "Computer: " + computerScore;
+        currentScore += " | You: " + userScore + " "
+        
+    let playAgain = confirm( currentScore + "\n" + msg + "\n" + "Play again?")
+    computerScore = 0;
+    userScore = 0;
+    if( playAgain ){
+        bestOf(5)
+    }
 }
 
 // Declare function decideWinner(userChoice, computerChoice)
