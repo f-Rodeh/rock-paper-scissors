@@ -3,6 +3,7 @@ let computerScore = 0;
 
 const body = document.querySelector('body');
 const results = document.createElement('div');
+const scores = document.querySelector('#scores');
 
 const buttons = document.querySelectorAll('#user-choice > button');
 buttons.forEach((button) => {
@@ -32,13 +33,17 @@ function playRound(userChoice) {
             break;
     }
 
+
     // Display results
     results.textContent = msg;
     body.appendChild(results)
+    
+    // Display score
+    scores.textContent = 
+      `Your score: ${userScore} | Computer score: ${computerScore}`;
 }
 
-// Declare function randomChoice() to choose randomly to return
-// "rock" / "paper" / "scissors"
+// returns "rock" / "paper" / "scissors"
 function randomChoice(){
     let randomNumber = Math.random()
     if ( randomNumber < 1/3 ){
@@ -48,33 +53,7 @@ function randomChoice(){
     } else if ( randomNumber < 1){
         return "scissors"
     }
-}//
-
-// Declare function insensitive() to make text case and space insiensitive
-function insensitive(str){
-    return str.trim().toLowerCase()
 }
-    
-// Declare function bestOf(n) to play a set of (n) rounds
-function bestOf(n){
-    // In a loop of i = 0, while i < n, increment i
-    for ( let i = 0; i < n; i++ ) {
-        // Play round with playRound("Round",i)
-        playRound( "Round", i )
-        let currentScore = "Computer: " + computerScore;
-        currentScore += " | You: " + userScore
-        console.log(currentScore)
-        // if isResultSecured(n) break the loop
-        if( isResultSecured(n) ){
-            break;
-        } 
-        // Log rounds left
-        let roundsLeft = n - i - 1
-        console.log( roundsLeft + " rounds left" )
-    }//
-    // Log bracket results
-    logBracketResults('Best Of', n)
-}//
 
 // Declare function logBracketResults that takes totalRounds to log it
 function logBracketResults( type = "", totalRounds ){
