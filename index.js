@@ -37,10 +37,6 @@ function playRound(userChoice) {
     body.appendChild(results)
 }
 
-function displayResults(winner ) {
-    
-}
-
 // Declare function randomChoice() to choose randomly to return
 // "rock" / "paper" / "scissors"
 function randomChoice(){
