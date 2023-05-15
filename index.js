@@ -14,6 +14,8 @@ buttons.forEach((button) => {
 
 function playRound(userChoice) {
 
+    if ( userScore >= 5 || computerScore >= 5 ) return;
+
     let computerChoice = randomChoice() 
     let msg = ""
     let winner = decideWinner( userChoice, computerChoice )
@@ -40,6 +42,21 @@ function playRound(userChoice) {
     // Display score
     scores.textContent = 
       `Your score: ${userScore} | Computer score: ${computerScore}`;
+
+    if( userScore >= 5) displayWinner('user')
+    if( computerScore >= 5) displayWinner('computer')
+}
+
+function displayWinner( winner ){
+    let msg = '';
+
+    if('user') msg = 'You won 5 rounds! game over';
+    else if('computer') msg = 'Computer won 5 rounds! game over';
+    else msg = 'error';
+
+    const wnr = document.createElement('h1');
+    wnr.textContent = msg;
+    body.appendChild(wnr)
 }
 
 // returns "rock" / "paper" / "scissors"
