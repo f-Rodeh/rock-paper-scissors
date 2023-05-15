@@ -55,46 +55,6 @@ function randomChoice(){
     }
 }
 
-// Declare function logBracketResults that takes totalRounds to log it
-function logBracketResults( type = "", totalRounds ){
-    // Declare msg variable with initial value ""
-    let msg = ""
-    console.group( "Game Over!" )
-    // Log userScore
-    console.log( "Your score: " + userScore )
-    // Log computerScore
-    console.log( "Computer score: " + computerScore )
-    
-    if( userScore > computerScore ) { // if won
-        // msg is win result
-        msg = `Congrats! you won ${type} ${totalRounds} :D` 
-    } else if( userScore < computerScore ){ // if lost 
-        // msg is lost result
-        msg = `You lost ${type} ${totalRounds} :(`
-    } else if( userScore === computerScore ){// if tie
-        // Log tie result'
-        console.log(`${type} ${totalRounds} it's a tie! WHAT IS  HAPPENING?`)
-        console.groupEnd()
-        // run tieBraker()
-        tieBraker()
-        return
-    }
-    // Log msg
-    console.log( msg )
-    console.groupEnd()
-    
-    // When finished, delete data and ask user to play again
-    let currentScore = "Computer: " + computerScore;
-        currentScore += " | You: " + userScore + " "
-        
-    let playAgain = confirm( currentScore + "\n" + msg + "\n" + "Play again?")
-    computerScore = 0;
-    userScore = 0;
-    if( playAgain ){
-        bestOf(5)
-    }
-}
-
 // returns "user" / "computer" / "tie"
 function decideWinner(userChoice, computerChoice){
     // return "user" if rock -> scissors
