@@ -1,65 +1,45 @@
-// Declare variable userScore with initial value 0 to track the user score
 let userScore = 0;
-// Declare variable computerScore with initial value 0 to track the computer score
 let computerScore = 0;
 
-// Run the game
-bestOf(5)
+const body = document.querySelector('body');
+const results = document.createElement('div');
 
-// Declare function playRound(type, i) to play a round. Return nothing
-function playRound(type, i) {
+const buttons = document.querySelectorAll('#user-choice > button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.id)
+    })
+})
 
-    // Ask user to input  rock / paper / scissors
-    // Store input in a String variable named userChoice
-    let userChoice = prompt(`${type} ${i+1}! Choose between  rock / paper / scissors`)
-    // Make userChoice insensitive with insensitive()
-    userChoice = insensitive(userChoice)
+function playRound(userChoice) {
 
-    // Declare variable computerChoice with initial value calculated
-    // ... by randomChoice() to define computer choice
     let computerChoice = randomChoice() 
-
-    // Declare variable msg with initial value "" to display results to user
     let msg = ""
-    // Declare variable winner calculated by decideWinner() to decide winner
     let winner = decideWinner( userChoice, computerChoice )
 
-    // Display results
-    // Group console with name `${type} ${i + 1}`  
-    console.group( type + " " + (i + 1) )
-    console.log( "You chose: " + userChoice )
-    console.log( "Computer chose: " + computerChoice);
-    // Test who the winner is
+    // Set msg
     switch( winner ){
-        // if winner is "user"
         case "user":
-            // increase userScore by 1
             userScore++
-            // set msg to win message
             msg = `${userChoice} beats ${computerChoice}! you win this round`
-            // log msg
-            console.log( msg )
             break;
-        // if winner is "computer"
         case "computer":
-            // increase computerScore by 1
             computerScore++
-            // set msg to lose message
             msg = `Oh no! ${computerChoice} beats ${userChoice}! you lose this round`
-            // log msg as an error
-            console.error( msg )
-            break;
-        // if winner is "tie" 
+            break; 
         case "tie":
-            // set msg to tie message
             msg = `${userChoice} vs ${computerChoice}? this round is a tie`
-            // log msg
-            console.log( msg )
             break;
     }
-    // End group
-    console.groupEnd()
-}//
+
+    // Display results
+    results.textContent = msg;
+    body.appendChild(results)
+}
+
+function displayResults(winner ) {
+    
+}
 
 // Declare function randomChoice() to choose randomly to return
 // "rock" / "paper" / "scissors"
@@ -140,8 +120,7 @@ function logBracketResults( type = "", totalRounds ){
     }
 }
 
-// Declare function decideWinner(userChoice, computerChoice)
-// ...Returns "user" / "computer" / "tie"
+// returns "user" / "computer" / "tie"
 function decideWinner(userChoice, computerChoice){
     // return "user" if rock -> scissors
     return (userChoice === "rock" && computerChoice === "scissors") ? "user": 
