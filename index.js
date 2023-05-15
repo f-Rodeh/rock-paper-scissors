@@ -67,14 +67,3 @@ function decideWinner(userChoice, computerChoice){
         // return "computer" otherwise
         "computer"
 }//
-
-// Declare function isResultSecured(totalRounds). Returns true / false
-function isResultSecured( totalRounds ){
-    // user wins if it has won more than half total (score is greater)
-    let userWon = userScore > (totalRounds / 2);
-    // computer wins if it has won more than half of total (score is greater)
-    let computerWon = computerScore > (totalRounds / 2);
-    // Return true if user or computer won
-    // Return false otherwise
-    return userWon || computerWon
-}//
