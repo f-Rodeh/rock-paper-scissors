@@ -33,7 +33,6 @@ function playRound(userChoice) {
             break;
     }
 
-
     // Display results
     results.textContent = msg;
     body.appendChild(results)
@@ -78,21 +77,4 @@ function isResultSecured( totalRounds ){
     // Return true if user or computer won
     // Return false otherwise
     return userWon || computerWon
-}//
-
-// Declare function tieBraker()
-function tieBraker(){
-    let n = 0;
-    // while userScore is exactly computerScore
-    for (let i = 0; userScore === computerScore; i++) {
-        n = i + 1
-        // Ask the user to continue with tie brakers
-        if( confirm("IT'S A TIE !! do you want a Tie Braker?") ){
-            // count how many times has played tie braker with variable i
-            playRound("Tie Braker", i) 
-        } else {      
-            break
-        }
-    }
-    logBracketResults("Tie Braker", n)
 }//
